@@ -1,0 +1,3 @@
+venv/**
+mistral-7b-instruct-v0.1.Q8_0.gguf
+models/mistral-7b-instruct-v0.1.Q2_K.gguf

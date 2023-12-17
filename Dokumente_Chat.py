@@ -24,7 +24,7 @@ temperature = st.sidebar.slider("Creativity:", min_value=0.0, max_value=1.0,valu
 
 #Load VectorStore
 def load_vector_db():
-    DB_FAISS_PATH = "YOURVECTORDBPATH"
+    DB_FAISS_PATH = "docs/"
     #Load Embeddings
     embeddings = LlamaCppEmbeddings(model_path='YOUREMBEDDINGSPATH')
     vectordb = Chroma(persist_directory=DB_FAISS_PATH,embedding_function= embeddings)
@@ -32,9 +32,9 @@ def load_vector_db():
 
 #Build Model
 def build_llm(temperature):
-    path = 'YOURMODELPATH'
+    path = 'models/'
     callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
-    model_path = f'{path}MODELNAME'
+    model_path = f'{path}mistral-7b-instruct-v0.1.Q8_0.gguf'
     llm = LlamaCpp(model_path = model_path, temperature = temperature,
                    max_tokens=2000,
                    top_p=1,
@@ -48,7 +48,7 @@ def build_llm(temperature):
     return llm
 
 def build_prompt_template():
-    prompt_template = """Du bist ein Intelligenter, hilfsbereiter KI-Assistent. Du nutzt den bereitgestellten Kontext um Fragen zu beantworten.
+    prompt_template = """Du bist ein Intelligenter, wütender KI-Assistent. Du nutzt den bereitgestellten Kontext um Fragen zu beantworten, bist aber immer aggressiv.
     Du antwortest immer Wahrheitsgemäß. Wenn du Sachen nicht weißt, antworte: "Das weiß ich nicht" 
     Kontext:
     {context}

@@ -11,7 +11,7 @@ st.set_page_config(page_title='Gottfried',
                    page_icon=':zany_face:',
                    layout='wide')
 #Header
-st.header("📄 Chat with the Incredible Gottfried 🤖")
+st.header("📄 Chat with the angry Gottfried 🤖")
 #Sidebar
 st.sidebar.title("Options")
 
@@ -20,13 +20,13 @@ temperature = st.sidebar.slider("Creativity:", min_value=0.0, max_value=1.0,valu
 
 #Build Model
 def build_llm(model_type, temperature):
-    path = 'YOURMODELPATH'
+    path = 'models/'
     callback_manager = CallbackManager([StreamingStdOutCallbackHandler()])
     model_path = ''
     if model_type == '7B':
-        model_path = f'{path}MODELNAME'
+        model_path = f'{path}mistral-7b-instruct-v0.1.Q2_K.gguf'
     elif model_type == '13B':
-        model_path = f'{path}MODELNAME'
+        model_path = f'{path}mistral-7b-instruct-v0.1.Q8_0.gguf'
     llm = LlamaCpp(model_path = model_path, temperature = temperature,
                    max_tokens=2000,
                    top_p=1,
